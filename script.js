@@ -1,7 +1,8 @@
 function calculo() {
+    let tipoOperacion;
     let cantNum = parseInt(prompt("Ingrese la cantidad de números que usted quiere en su operación"))
     if (cantNum > 2) {
-        let tipoOperacion = parseInt(prompt("Como es un cálculo de más de dos números, ingrese 1 para Suma/Resta, o 2 para Multiplicación/División"))
+        tipoOperacion = parseInt(prompt("Como es un cálculo de más de dos números, ingrese 1 para Suma/Resta, o 2 para Multiplicación/División"));
     }
     else {
         tipoOperacion = 3;

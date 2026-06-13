@@ -1,10 +1,21 @@
 function calculo() {
     let tipoOperacion;
+    let signosValidos;
     let cantNum = parseInt(prompt("Ingrese la cantidad de números que usted quiere en su operación"))
     if (cantNum > 2) {
         tipoOperacion = parseInt(prompt("Como es un cálculo de más de dos números, ingrese 1 para Suma/Resta, o 2 para Multiplicación/División"));
+        if (tipoOperacion == 1) {
+            signosValidos = ["+", "-"];
+        }
+        else if (tipoOperacion == 2) {
+            signosValidos = ["*", "/"];
+        }
+        else {
+            return;
+        }
     }
     else if (cantNum == 2) {
+        signosValidos = ["+", "-", "*", "/"];
         tipoOperacion = 3;
     }
     else {
@@ -12,7 +23,6 @@ function calculo() {
         return;
     }
 
-    
     const numeros = [];
     const operaciones = [];
     let resultado;
@@ -26,10 +36,19 @@ function calculo() {
             numeros[i] = parseFloat(prompt("Escribe el número número " + [i + 1] + " de tu operación matemática"));
         }
         while (a + 1 != cantNum) {
-            operaciones[a] = prompt("Escribe el tipo de operación: + - * /");
-            while (operaciones[a] !== "+" && operaciones[a] !== "-" && operaciones[a] !== "*" && operaciones[a] !== "/") {
-                alert("Solo se pueden usar los operadores + - * /. Intentelo de nuevo a continuación")
-                operaciones[a] = prompt("Escribe el tipo de operación: + - * /");
+            if (tipoOperacion == 1 || tipoOperacion == 2) {
+                operaciones[a] = prompt("Escribe el operador a usar: " + signosValidos[0] + " " + signosValidos[1]);
+                while (operaciones[a] !== signosValidos[0] && operaciones[a] !== signosValidos[1]) {
+                    alert("Solo se pueden usar los operadores " + signosValidos[0] + " " + signosValidos[1] + " por el tipo de cuenta que eligió. Intentelo de nuevo a continuación")
+                    operaciones[a] = prompt("Escribe el operador a usar: " + signosValidos[0] + " " + signosValidos[1]);
+                }
+            }
+            else {
+                operaciones[a] = prompt("Escribe el operador a usar: + - * /");
+                while (operaciones[a] !== "+" && operaciones[a] !== "-" && operaciones[a] !== "*" && operaciones[a] !== "/") {
+                    alert("Solo se pueden usar los operadores + - * /. Intentelo de nuevo a continuación")
+                    operaciones[a] = prompt("Escribe el operador a usar: + - * /");
+                }
             }
             a++;
             aAnterior = a;
